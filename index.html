@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HIMA Benelux, de federatie voor DIY, tuin en home improvement</title>
+<meta name="description" content="HIMA Benelux brengt fabrikanten, leveranciers en retailers in de DIY-, tuin- en home-improvement-sector samen. Word lid en versterk je marktinzicht.">
+<!-- Herbouw in de stijl van de Webflow-template 'Zaidic' (directory, corporate clean). Echte content en huisstijl van himabenelux.org. Merkkleur navy [te bevestigen]. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --brand:#16294D; --brand-2:#0F1D38; --accent:#2E6BE6; --accent-2:#1f4fb0;
+  --ink:#13203a; --muted:#5a6b86; --bg:#ffffff; --soft:#f4f6fa; --line:#e4e8f0;
+  --radius:16px; --shadow:0 10px 30px rgba(15,29,56,.08); --shadow-sm:0 4px 14px rgba(15,29,56,.06);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Manrope',system-ui,Segoe UI,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.container{width:100%;max-width:1180px;margin:0 auto;padding:0 24px}
+.btn{display:inline-flex;align-items:center;gap:8px;font-weight:700;border-radius:999px;padding:13px 24px;transition:.2s;border:1px solid transparent;cursor:pointer;font-size:15px}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--accent-2)}
+.btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.35)}
+.btn-ghost:hover{background:rgba(255,255,255,.1)}
+.btn-dark{background:var(--brand);color:#fff}
+.btn-dark:hover{background:var(--brand-2)}
+.eyebrow{font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:12.5px;color:var(--accent)}
+.section{padding:88px 0}
+.section h2{font-size:34px;line-height:1.15;font-weight:800;letter-spacing:-.02em;color:var(--brand)}
+.lead{color:var(--muted);font-size:18px;max-width:620px}
+
+/* header */
+header.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--line)}
+.nav-row{display:flex;align-items:center;justify-content:space-between;height:74px}
+.brand{display:flex;align-items:center;gap:12px;font-weight:800;color:var(--brand);font-size:19px;letter-spacing:-.01em}
+.brand .logo-badge{width:38px;height:38px;border-radius:10px;background:var(--brand);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800}
+.menu{display:flex;align-items:center;gap:30px}
+.menu a{font-weight:600;color:#33405c;font-size:15px}
+.menu a:hover{color:var(--accent)}
+.nav-cta{display:flex;align-items:center;gap:14px}
+.nav-login{font-weight:600;color:#33405c;font-size:15px}
+.burger{display:none;background:none;border:0;cursor:pointer;padding:8px}
+.burger span{display:block;width:24px;height:2px;background:var(--brand);margin:5px 0;border-radius:2px}
+
+/* hero */
+.hero{background:linear-gradient(180deg,#fff 0%,var(--soft) 100%);overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:54px;align-items:center;padding:70px 0 84px}
+.hero h1{font-size:50px;line-height:1.05;letter-spacing:-.03em;font-weight:800;color:var(--brand);margin:16px 0 18px}
+.hero p.intro{font-size:19px;color:#3a4866;max-width:540px}
+.hero-cta{display:flex;gap:14px;margin-top:30px;flex-wrap:wrap}
+.hero-stats{display:flex;gap:34px;margin-top:38px}
+.hero-stats .stat strong{display:block;font-size:30px;font-weight:800;color:var(--brand);letter-spacing:-.02em}
+.hero-stats .stat span{font-size:13.5px;color:var(--muted);font-weight:600}
+.hero-card{position:relative;border-radius:24px;overflow:hidden;box-shadow:var(--shadow);background:var(--brand)}
+.hero-card img{width:100%;height:100%;object-fit:cover;min-height:420px;opacity:.96}
+.hero-badge{position:absolute;left:22px;bottom:22px;background:rgba(255,255,255,.95);border-radius:14px;padding:14px 18px;box-shadow:var(--shadow-sm);font-weight:700;color:var(--brand);font-size:14px;display:flex;align-items:center;gap:10px}
+.dot{width:9px;height:9px;border-radius:50%;background:#2fbf71;display:inline-block}
+
+/* trust */
+.trust{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#fff}
+.trust-row{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:26px 0;flex-wrap:wrap}
+.trust-row .t-label{font-size:13px;font-weight:700;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.trust-logos{display:flex;gap:30px;flex-wrap:wrap;align-items:center}
+.trust-logos span{font-weight:800;color:#9aa6bd;font-size:17px;letter-spacing:.01em}
+
+/* objectives */
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:46px}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px 24px;box-shadow:var(--shadow-sm);transition:.2s}
+.card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:#d3dcec}
+.card .ic{width:50px;height:50px;border-radius:13px;background:#eef3fc;display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+.card h3{font-size:18px;color:var(--brand);font-weight:700;margin-bottom:8px}
+.card p{color:var(--muted);font-size:15px}
+
+/* events */
+.events{background:var(--soft)}
+.head-row{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+.events-list{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:44px}
+.event{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;transition:.2s}
+.event:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.event .ev-top{display:flex;gap:16px;padding:24px 24px 0}
+.date-chip{flex:none;width:64px;height:64px;border-radius:14px;background:var(--brand);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1}
+.date-chip .d{font-size:22px;font-weight:800}
+.date-chip .m{font-size:11px;font-weight:700;letter-spacing:.08em;margin-top:3px;opacity:.9}
+.event h3{font-size:17px;color:var(--brand);font-weight:700;line-height:1.3}
+.event .ev-body{padding:14px 24px 24px}
+.event .meta{display:flex;align-items:center;gap:7px;color:var(--muted);font-size:13.5px;font-weight:600;margin-top:4px}
+.event .ev-foot{margin-top:auto;padding:16px 24px;border-top:1px solid var(--line);font-weight:700;color:var(--accent);font-size:14px}
+
+/* members */
+.members-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:42px}
+.member{background:#fff;border:1px solid var(--line);border-radius:13px;padding:22px 16px;text-align:center;font-weight:700;color:#2b3a59;font-size:15px;box-shadow:var(--shadow-sm);transition:.2s}
+.member:hover{border-color:var(--accent);color:var(--brand);transform:translateY(-3px)}
+.partners{margin-top:40px;display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.tier{display:inline-flex;align-items:center;gap:9px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:9px 18px;font-weight:700;color:#2b3a59;font-size:14px;box-shadow:var(--shadow-sm)}
+.tier .tg{width:10px;height:10px;border-radius:50%}
+.t-gold{background:#e3b341}.t-silver{background:#aab4c4}.t-bronze{background:#c08457}
+
+/* join CTA */
+.join{background:radial-gradient(120% 140% at 0% 0%,var(--brand) 0%,var(--brand-2) 60%);color:#fff;border-radius:28px;padding:64px 56px;display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center}
+.join h2{color:#fff;font-size:36px;letter-spacing:-.02em}
+.join p{color:rgba(255,255,255,.82);font-size:18px;margin-top:14px;max-width:520px}
+.join .j-right{display:flex;flex-direction:column;gap:14px;justify-self:end}
+.checklist{list-style:none;margin:22px 0 0;display:grid;gap:10px}
+.checklist li{display:flex;align-items:center;gap:11px;color:rgba(255,255,255,.92);font-weight:600}
+.check{width:22px;height:22px;border-radius:50%;background:rgba(46,107,230,.25);display:flex;align-items:center;justify-content:center;flex:none}
+
+/* footer */
+footer{background:var(--brand-2);color:#c7d0e2;padding:64px 0 28px}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:34px}
+.foot-brand{display:flex;align-items:center;gap:12px;color:#fff;font-weight:800;font-size:19px;margin-bottom:14px}
+.foot-brand .logo-badge{width:36px;height:36px;border-radius:9px;background:#fff;color:var(--brand);display:flex;align-items:center;justify-content:center;font-weight:800}
+footer p.addr{font-size:14.5px;line-height:1.7;color:#9fabc6}
+footer h4{color:#fff;font-size:14px;letter-spacing:.04em;text-transform:uppercase;margin-bottom:16px;font-weight:700}
+footer ul{list-style:none;display:grid;gap:10px}
+footer ul a{color:#aeb9d0;font-size:14.5px}
+footer ul a:hover{color:#fff}
+.foot-bottom{border-top:1px solid rgba(255,255,255,.1);margin-top:40px;padding-top:22px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:#8a97b4;font-size:13.5px}
+
+svg.ic-svg{width:24px;height:24px;stroke:var(--accent);fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+
+@media (max-width:991px){
+  .hero-grid{grid-template-columns:1fr;gap:36px;padding:48px 0 60px}
+  .hero h1{font-size:40px}
+  .cards{grid-template-columns:repeat(2,1fr)}
+  .events-list{grid-template-columns:1fr 1fr}
+  .members-grid{grid-template-columns:repeat(3,1fr)}
+  .join{grid-template-columns:1fr;padding:48px 34px}
+  .join .j-right{justify-self:start}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .menu,.nav-login{display:none}
+  .burger{display:block}
+}
+@media (max-width:767px){
+  .section{padding:60px 0}
+  .section h2,.join h2{font-size:28px}
+  .events-list{grid-template-columns:1fr}
+  .members-grid{grid-template-columns:repeat(2,1fr)}
+  .hero-stats{gap:22px}
+}
+@media (max-width:479px){
+  .hero h1{font-size:32px}
+  .cards{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr}
+  .trust-row{justify-content:center;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav-row">
+    <a class="brand" href="#top">
+      <img src="https://www.himabenelux.org/front/images/himabenelux.svg" alt="HIMA Benelux" style="height:34px;width:auto">
+    </a>
+    <nav class="menu">
+      <a href="#federatie">HIMA Benelux</a>
+      <a href="#evenementen">Evenementen</a>
+      <a href="#leden">Leden</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="nav-login" href="#">Inloggen</a>
+      <a class="btn btn-primary" href="#lid-worden">Ik wil lid worden</a>
+    </div>
+    <button class="burger" aria-label="Menu" onclick="document.querySelector('.menu').style.display = (getComputedStyle(document.querySelector('.menu')).display==='none'?'flex':'none')">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<a id="top"></a>
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <span class="eyebrow">De federatie voor DIY, tuin en home improvement</span>
+      <h1>Samen sterker in de DIY-, tuin- en home-improvement-sector</h1>
+      <p class="intro">HIMA Benelux brengt fabrikanten, leveranciers en retailers samen om kennis te delen, marktinzichten te versterken en duurzame samenwerkingen te creeren.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#lid-worden">Ik wil lid worden</a>
+        <a class="btn btn-dark" href="#federatie">Ontdek de federatie</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><strong>10+</strong><span>Aangesloten leden</span></div>
+        <div class="stat"><strong>4</strong><span>Kerndoelstellingen</span></div>
+        <div class="stat"><strong>3</strong><span>Events op de planning</span></div>
+      </div>
+    </div>
+    <div class="hero-card">
+      <img src="https://www.himabenelux.org/images/section_item/c_c/1280x1020/hima-benelux-2026_1782220596.png" alt="HIMA Benelux netwerkmoment voor de DIY- en tuin-sector">
+      <div class="hero-badge"><span class="dot"></span> Netwerk van de Benelux-sector</div>
+    </div>
+  </div>
+</section>
+
+<section class="trust">
+  <div class="container trust-row">
+    <span class="t-label">Vertrouwd door toonaangevende leden</span>
+    <div class="trust-logos">
+      <span>Van Marcke</span><span>Compo</span><span>Knauf</span><span>GP Lighting</span><span>Agaris</span>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="federatie">
+  <div class="container">
+    <span class="eyebrow">Wat we doen</span>
+    <h2>Vier manieren waarop we de sector versterken</h2>
+    <p class="lead" style="margin-top:14px">Als federatie bundelen we de krachten van producenten, leveranciers en retailers. Dit zijn onze kerndoelstellingen.</p>
+    <div class="cards">
+      <div class="card">
+        <div class="ic"><svg class="ic-svg" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="10" r="2.5"/><path d="M3 19c0-3 3-4.5 6-4.5S15 16 15 19M14.5 18.5c.2-2 2-3 3.5-3s2.8.7 3 2.5"/></svg></div>
+        <h3>Diverse werkgroepen</h3>
+        <p>Leden werken samen rond concrete thema's, van duurzaamheid tot retail en logistiek.</p>
+      </div>
+      <div class="card">
+        <div class="ic"><svg class="ic-svg" viewBox="0 0 24 24"><path d="M12 3v18M5 8l7-5 7 5M5 8v8l7 5 7-5V8"/></svg></div>
+        <h3>Toenadering tot federaties</h3>
+        <p>We verbinden de Benelux met andere federaties en versterken zo de gezamenlijke stem.</p>
+      </div>
+      <div class="card">
+        <div class="ic"><svg class="ic-svg" viewBox="0 0 24 24"><path d="M4 19V5M4 19h16M8 16v-5M12 16V8M16 16v-7"/></svg></div>
+        <h3>Vergaren van marktgegevens</h3>
+        <p>Betrouwbare cijfers en analyses geven leden scherp inzicht in de markt en de trends.</p>
+      </div>
+      <div class="card">
+        <div class="ic"><svg class="ic-svg" viewBox="0 0 24 24"><path d="M12 21s-7-4.4-7-10a7 7 0 0 1 14 0c0 5.6-7 10-7 10z"/><circle cx="12" cy="11" r="2.4"/></svg></div>
+        <h3>Grote marktrepresentatie</h3>
+        <p>Een sterke vertegenwoordiging die de belangen van de hele sector behartigt.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section events" id="evenementen">
+  <div class="container">
+    <div class="head-row">
+      <div>
+        <span class="eyebrow">Agenda</span>
+        <h2>Kom samen op onze evenementen</h2>
+      </div>
+      <a class="btn btn-dark" href="#">Bekijk alle events</a>
+    </div>
+    <div class="events-list">
+      <div class="event">
+        <div class="ev-top">
+          <div class="date-chip"><span class="d">24</span><span class="m">SEP</span></div>
+          <h3>CO2-rapporteringen efficienter aanpakken en After Summer BBQ</h3>
+        </div>
+        <div class="ev-body">
+          <div class="meta">17:00 tot 22:00</div>
+          <div class="meta">Herentals, Belgie</div>
+        </div>
+        <div class="ev-foot">Inschrijven</div>
+      </div>
+      <div class="event">
+        <div class="ev-top">
+          <div class="date-chip"><span class="d">09</span><span class="m">OKT</span></div>
+          <h3>Retail Ontbijt met Maxeda Platform en Becom</h3>
+        </div>
+        <div class="ev-body">
+          <div class="meta">08:30 tot 13:30</div>
+          <div class="meta">Herentals, Belgie</div>
+        </div>
+        <div class="ev-foot">Inschrijven</div>
+      </div>
+      <div class="event">
+        <div class="ev-top">
+          <div class="date-chip"><span class="d">02</span><span class="m">JUN</span></div>
+          <h3>Global DIY-Summit 2027</h3>
+        </div>
+        <div class="ev-body">
+          <div class="meta">02 tot 04 juni 2027</div>
+          <div class="meta">Praag, Tsjechie</div>
+        </div>
+        <div class="ev-foot">Inschrijven</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="leden">
+  <div class="container">
+    <span class="eyebrow">Onze leden</span>
+    <h2>Een netwerk van toonaangevende bedrijven</h2>
+    <p class="lead" style="margin-top:14px">Fabrikanten, leveranciers en retailers die samen de DIY-, tuin- en home-improvement-sector vormgeven.</p>
+    <div class="members-grid">
+      <div class="member">Compo Benelux</div>
+      <div class="member">GP Lighting</div>
+      <div class="member">Agaris Belgium</div>
+      <div class="member">GAWIJN</div>
+      <div class="member">Van Marcke</div>
+      <div class="member">All Fields</div>
+      <div class="member">Isaberg Rapid AB</div>
+      <div class="member">Avasco Industries</div>
+      <div class="member">Bio Services International</div>
+      <div class="member">Knauf</div>
+    </div>
+    <div class="partners">
+      <span class="tier"><span class="tg t-gold"></span> All Fields, Gold</span>
+      <span class="tier"><span class="tg t-silver"></span> Katoen Natie, Silver</span>
+      <span class="tier"><span class="tg t-silver"></span> Vizir Group, Silver</span>
+      <span class="tier"><span class="tg t-bronze"></span> DIY-home-garden, Bronze</span>
+      <span class="tier"><span class="tg t-bronze"></span> VRD, Bronze</span>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="lid-worden">
+  <div class="container">
+    <div class="join">
+      <div>
+        <span class="eyebrow" style="color:#8fb3ff">Lidmaatschap</span>
+        <h2>Word lid van HIMA Benelux</h2>
+        <p>Lidmaatschap bij HIMA Benelux is meer dan de moeite waard. Je krijgt rechtstreeks inzicht in marktgegevens, een plek in de werkgroepen en een sterke gezamenlijke stem in de sector.</p>
+        <ul class="checklist">
+          <li><span class="check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9fc0ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 6"/></svg></span> Toegang tot werkgroepen en netwerk</li>
+          <li><span class="check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9fc0ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 6"/></svg></span> Marktgegevens en sectoranalyses</li>
+          <li><span class="check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9fc0ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 6"/></svg></span> Vertegenwoordiging van je belangen</li>
+        </ul>
+      </div>
+      <div class="j-right">
+        <a class="btn btn-primary" href="#contact">Ik wil lid worden</a>
+        <a class="btn btn-ghost" href="#contact">Vraag meer info</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand"><span class="logo-badge">H</span> HIMA Benelux</div>
+        <p class="addr">De federatie van fabrikanten en leveranciers in de DIY-, tuin- en home-improvement-sector.<br><br>Welvaartstraat 14/1<br>2200 Herentals, Belgie</p>
+      </div>
+      <div>
+        <h4>Federatie</h4>
+        <ul><li><a href="#federatie">Over HIMA Benelux</a></li><li><a href="#federatie">Doelstellingen</a></li><li><a href="#leden">Leden</a></li><li><a href="#leden">Partners</a></li></ul>
+      </div>
+      <div>
+        <h4>Activiteiten</h4>
+        <ul><li><a href="#evenementen">Evenementen</a></li><li><a href="#evenementen">Werkgroepen</a></li><li><a href="#">Nuttige links</a></li><li><a href="#">Nieuws</a></li></ul>
+      </div>
+      <div>
+        <h4>Doe mee</h4>
+        <ul><li><a href="#lid-worden">Lid worden</a></li><li><a href="#">Inloggen</a></li><li><a href="#contact">Contact</a></li></ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>HIMA Benelux. Alle rechten voorbehouden.</span>
+      <span>Herontwerp door BrightBox, concept op basis van de Webflow-stijl Zaidic.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
