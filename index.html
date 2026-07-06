@@ -10,15 +10,17 @@
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
   --navy:#16294D; --navy-2:#0F1D38; --navy-3:#1C3157;
   --accent:#2E6BE6; --accent-soft:#8FB3FF; --accent-tint:#EAF1FE;
   --ink:#16294D; --body:#51617D; --muted:#8A97B4;
   --line:#E6EBF2; --bg:#F6F8FC; --card:#FFFFFF;
-  --radius:20px; --radius-sm:14px; --shadow:0 18px 40px -18px rgba(15,29,56,.22);
-  --shadow-sm:0 6px 18px -8px rgba(15,29,56,.16);
+  --radius:20px; --radius-sm:14px;
+  --shadow:0 24px 54px -22px rgba(15,29,56,.30);
+  --shadow-sm:0 10px 26px -12px rgba(15,29,56,.16);
+  --shadow-lg:0 40px 80px -30px rgba(15,29,56,.42);
   --maxw:1180px;
 }
 *{margin:0;padding:0;box-sizing:border-box}
@@ -26,7 +28,7 @@ html{scroll-behavior:smooth}
 body{font-family:'Manrope',system-ui,sans-serif;color:var(--body);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
 img{max-width:100%;display:block}
 a{text-decoration:none;color:inherit}
-h1,h2,h3,h4{color:var(--ink);line-height:1.1;letter-spacing:-.02em;font-weight:800}
+h1,h2,h3,h4{color:var(--ink);line-height:1.08;letter-spacing:-.025em;font-weight:800;font-family:'Sora','Manrope',sans-serif}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
 .section{padding:96px 0}
 .eyebrow{font-size:12.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
@@ -311,6 +313,36 @@ h1,h2,h3,h4{color:var(--ink);line-height:1.1;letter-spacing:-.02em;font-weight:8
   .reveal .mark::after{transform:scaleX(1)!important}
   .marquee-track,.ribbon-track,.hero-badge,.blob,.sunburst,.glow,.aurora{animation:none!important}
 }
+/* ===== PREMIUM PASS ===== */
+.eyebrow{display:inline-flex;align-items:center;gap:11px}
+.eyebrow::before{content:"";width:26px;height:2px;border-radius:2px;background:currentColor;opacity:.9}
+.btn-primary{background:linear-gradient(135deg,#3a78f0,#1f57c8);box-shadow:0 12px 26px -10px rgba(46,107,230,.65)}
+.btn-primary:hover{background:linear-gradient(135deg,#4886ff,#2560d6);box-shadow:0 16px 34px -10px rgba(46,107,230,.75);transform:translateY(-2px)}
+.btn-dark{box-shadow:0 12px 26px -12px rgba(15,29,56,.5)}
+.feat{border-radius:22px}
+.feat .ic{background:linear-gradient(135deg,#2E6BE6,#5f96ff);box-shadow:0 10px 22px -10px rgba(46,107,230,.7)}
+.feat .ic svg{color:#fff}
+.feat:hover{box-shadow:var(--shadow);border-color:#d7e2f4}
+.sector{border-radius:22px}
+.sector .ic{box-shadow:inset 0 0 0 1px rgba(255,255,255,.16)}
+.mem{border-radius:20px}
+.mem:hover{box-shadow:var(--shadow)}
+.searchbar{background:rgba(255,255,255,.92);backdrop-filter:blur(10px);box-shadow:var(--shadow)}
+.gal img,.hero-photo img{transition:transform .7s ease,filter .5s ease}
+.gal::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(22,41,77,.08),rgba(15,29,56,.42));z-index:1;pointer-events:none;transition:opacity .4s}
+.gal:hover::after{opacity:.6}
+.gal .cap{z-index:2}
+.hero-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(150deg,rgba(46,107,230,.22),rgba(15,29,56,.34));pointer-events:none}
+.reveal{transition:opacity .75s cubic-bezier(.2,.7,.2,1),transform .75s cubic-bezier(.2,.7,.2,1),filter .75s ease;filter:blur(8px)}
+.reveal.in{filter:blur(0)}
+.dark::before{content:"";position:absolute;inset:0;background:radial-gradient(460px circle at var(--mx,50%) var(--my,12%),rgba(46,107,230,.20),transparent 62%);opacity:0;transition:opacity .35s;pointer-events:none;z-index:0}
+.dark:hover::before{opacity:1}
+.statement{background:#fff;text-align:center;padding:98px 0}
+.statement .wrap{max-width:920px}
+.statement .q{font-family:'Sora','Manrope',sans-serif;font-weight:800;font-size:40px;line-height:1.22;letter-spacing:-.02em;color:var(--ink)}
+.statement .q em{font-style:normal;color:var(--accent)}
+.statement .tagline{margin-top:22px;font-weight:700;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;font-size:12.5px}
+@media(max-width:640px){.statement{padding:64px 0}.statement .q{font-size:27px}}
 </style>
 </head>
 <body>
@@ -563,6 +595,14 @@ h1,h2,h3,h4{color:var(--ink);line-height:1.1;letter-spacing:-.02em;font-weight:8
   </div>
 </section>
 
+<!-- STATEMENT -->
+<section class="statement">
+  <div class="wrap">
+    <p class="q">Samen bouwen we aan een <em>sterke en duurzame</em> DIY-, tuin- en home-improvement-sector in de Benelux.</p>
+    <div class="tagline">De missie van HIMA Benelux</div>
+  </div>
+</section>
+
 <!-- CTA -->
 <section class="section" style="padding-top:0">
   <div class="wrap">
@@ -641,7 +681,7 @@ h1,h2,h3,h4{color:var(--ink);line-height:1.1;letter-spacing:-.02em;font-weight:8
 
   if(reduce){return;}
 
-  var sel='.sec-head,.sector,.feat,.mem,.svc,.step,.ev,.proof,.stats,.gal,.cta-band>div,.about-grid>div,.svc-intro,.proc-head';
+  var sel='.sec-head,.sector,.feat,.mem,.svc,.step,.ev,.proof,.stats,.gal,.cta-band>div,.about-grid>div,.svc-intro,.proc-head,.statement .q,.statement .tagline';
   var els=[].slice.call(document.querySelectorAll(sel));
   els.forEach(function(el){el.classList.add('reveal');});
   ['.sector-grid','.feat-grid','.mem-grid','.proc-grid','.ev-grid','.gal-grid'].forEach(function(gs){
