@@ -231,6 +231,42 @@ h1,h2,h3,h4{color:var(--ink);line-height:1.1;letter-spacing:-.02em;font-weight:8
 .mobile-menu{display:none;background:#fff;border-bottom:1px solid var(--line);padding:14px 24px}
 .mobile-menu a{display:block;padding:10px 0;font-weight:600;color:#334063}
 .mobile-menu.open{display:block}
+
+/* ===== ANIMATIONS ===== */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.reveal .mark::after{transform:scaleX(0);transform-origin:left center;transition:transform .6s .3s cubic-bezier(.2,.7,.2,1)}
+.reveal.in .mark::after{transform:scaleX(1)}
+.hero-copy>*{opacity:0;transform:translateY(22px);animation:heroIn .85s cubic-bezier(.2,.7,.2,1) forwards}
+.hero-copy>*:nth-child(1){animation-delay:.05s}
+.hero-copy>*:nth-child(2){animation-delay:.14s}
+.hero-copy>*:nth-child(3){animation-delay:.23s}
+.hero-copy>*:nth-child(4){animation-delay:.32s}
+.hero-copy>*:nth-child(5){animation-delay:.41s}
+.hero-visual{opacity:0;animation:heroIn 1s .3s cubic-bezier(.2,.7,.2,1) forwards}
+@keyframes heroIn{to{opacity:1;transform:none}}
+.hero-badge{animation:floaty 4s ease-in-out infinite}
+@keyframes floaty{0%,100%{transform:rotate(-3deg) translateY(0)}50%{transform:rotate(-3deg) translateY(-9px)}}
+.blob{animation:drift 10s ease-in-out infinite}
+.blob:nth-of-type(2){animation-duration:13s;animation-direction:reverse}
+@keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(16px,-20px)}}
+.sector,.feat,.ev,.svc{transition:transform .22s ease,box-shadow .22s ease}
+.sector:hover{transform:translateY(-5px)}
+.feat:hover,.svc:hover{transform:translateY(-4px)}
+.mem .logo img{transition:transform .4s ease}
+.mem:hover .logo img{transform:scale(1.07)}
+.btn,.lnk .arrow{transition:.18s}
+/* logo marquee */
+.marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.marquee-track{display:flex;gap:14px;width:max-content;animation:scrollx 40s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee .logo-tile{width:152px;flex:none}
+@keyframes scrollx{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){
+  .reveal,.hero-copy>*,.hero-visual{opacity:1!important;transform:none!important;animation:none!important}
+  .reveal .mark::after{transform:scaleX(1)!important}
+  .marquee-track,.hero-badge,.blob,.sunburst{animation:none!important}
+}
 </style>
 </head>
 <body>
@@ -334,7 +370,7 @@ h1,h2,h3,h4{color:var(--ink);line-height:1.1;letter-spacing:-.02em;font-weight:8
     <div class="proof">
       <h3>Trots gesteund door onze leden</h3>
       <p class="psub">Toonaangevende fabrikanten en leveranciers uit de hele Benelux.</p>
-      <div class="logos">
+      <div class="marquee"><div class="marquee-track" id="logoTrack">
         <div class="logo-tile"><img src="https://www.himabenelux.org/images/company_brand/s_c/200x200/rec-diy-logo-rgb-combobase_1588752124.jpg" alt="Recticel Combo"></div>
         <div class="logo-tile"><img src="https://www.himabenelux.org/images/company_company/s_c/200x200/galico-2015-met-baseline-cmyk-druk_1588751014.png" alt="Galico NV"></div>
         <div class="logo-tile"><img src="https://www.himabenelux.org/images/company_company/s_c/200x200/legrand_1588688256.png" alt="Legrand Group Belgium"></div>
@@ -345,7 +381,7 @@ h1,h2,h3,h4{color:var(--ink);line-height:1.1;letter-spacing:-.02em;font-weight:8
         <div class="logo-tile"><img src="https://www.himabenelux.org/images/company_brand/s_c/200x200/toolland-slogan-red_1660716432.png" alt="Toolland"></div>
         <div class="logo-tile"><img src="https://www.himabenelux.org/images/company_brand/s_c/200x200/logo-light-creations-v_1678265728.png" alt="Light Creations"></div>
         <div class="logo-tile neg"><img src="https://www.himabenelux.org/images/company_company/s_c/200x200/rectavit-metwit-001_1588758408.jpg" alt="Rectavit"></div>
-      </div>
+      </div></div>
     </div>
   </div>
 </section>
@@ -504,6 +540,53 @@ h1,h2,h3,h4{color:var(--ink);line-height:1.1;letter-spacing:-.02em;font-weight:8
     </div>
   </div>
 </footer>
+
+<script>
+(function(){
+  var track=document.getElementById('logoTrack');
+  if(track){track.innerHTML+=track.innerHTML;}
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  var stats=document.querySelector('.stats');
+  var statEls=stats?[].slice.call(stats.querySelectorAll('.st b')):[];
+  var statData=statEls.map(function(b){var raw=b.textContent.trim();return{el:b,suffix:raw.replace(/[0-9]/g,''),target:parseInt(raw,10)||0};});
+  if(!reduce){statData.forEach(function(d){d.el.textContent='0'+d.suffix;});}
+
+  if(reduce){return;}
+
+  var sel='.sec-head,.sector,.feat,.mem,.svc,.step,.ev,.proof,.stats,.cta-band>div,.about-grid>div,.svc-intro,.proc-head';
+  var els=[].slice.call(document.querySelectorAll(sel));
+  els.forEach(function(el){el.classList.add('reveal');});
+  ['.sector-grid','.feat-grid','.mem-grid','.proc-grid','.ev-grid'].forEach(function(gs){
+    document.querySelectorAll(gs).forEach(function(g){
+      [].slice.call(g.children).forEach(function(c,i){c.style.transitionDelay=((i%4)*0.08)+'s';});
+    });
+  });
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+  },{threshold:0.12,rootMargin:'0px 0px -40px 0px'});
+  els.forEach(function(el){io.observe(el);});
+
+  if(stats){
+    var done=false;
+    var cio=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting&&!done){done=true;
+          statData.forEach(function(d){
+            var start=null,dur=1300;
+            function step(ts){if(!start)start=ts;var p=Math.min((ts-start)/dur,1);
+              var eased=1-Math.pow(1-p,3);
+              d.el.textContent=Math.round(eased*d.target)+d.suffix;
+              if(p<1)requestAnimationFrame(step);}
+            requestAnimationFrame(step);
+          });
+        }
+      });
+    },{threshold:0.5});
+    cio.observe(stats);
+  }
+})();
+</script>
 
 </body>
 </html>
