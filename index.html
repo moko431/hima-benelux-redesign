@@ -262,14 +262,60 @@ h1,h2,h3,h4{color:var(--ink);line-height:1.1;letter-spacing:-.02em;font-weight:8
 .marquee:hover .marquee-track{animation-play-state:paused}
 .marquee .logo-tile{width:152px;flex:none}
 @keyframes scrollx{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* scroll progress */
+.progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,#2E6BE6,#8FB3FF);z-index:100;transition:width .08s linear}
+/* nav scrolled */
+.nav.scrolled{box-shadow:0 10px 30px -14px rgba(15,29,56,.22)}
+.nav-inner{transition:height .28s ease}
+.nav.scrolled .nav-inner{height:62px}
+/* 3D tilt */
+[data-tilt]{transition:transform .2s ease,box-shadow .2s ease;will-change:transform}
+/* shine sweep */
+.mem,.svc{position:relative;overflow:hidden}
+.mem::after,.svc::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 32%,rgba(255,255,255,.28) 50%,transparent 68%);transform:translateX(-130%);transition:transform .75s ease;pointer-events:none;z-index:3}
+.mem:hover::after,.svc:hover::after{transform:translateX(130%)}
+/* dark section glow orbs */
+.dark{position:relative;overflow:hidden}
+.dark .wrap{position:relative;z-index:1}
+.glow{position:absolute;border-radius:50%;filter:blur(75px);opacity:.5;pointer-events:none;z-index:0;animation:orb 12s ease-in-out infinite}
+@keyframes orb{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(32px,-26px) scale(1.14)}}
+/* hero aurora */
+.hero{position:relative}
+.hero .wrap{position:relative;z-index:1}
+.aurora{position:absolute;border-radius:50%;filter:blur(85px);opacity:.5;pointer-events:none;z-index:0;animation:orb 15s ease-in-out infinite}
+/* hero secondary photo card */
+.hero-photo{position:absolute;left:-30px;top:34px;width:158px;height:158px;border-radius:20px;overflow:hidden;box-shadow:var(--shadow);transform:rotate(-6deg);border:5px solid #fff;z-index:3}
+.hero-photo img{width:100%;height:100%;object-fit:cover}
+/* keyword ribbon */
+.ribbon{background:var(--navy);overflow:hidden;padding:15px 0}
+.ribbon-track{display:flex;width:max-content;animation:scrollx 28s linear infinite}
+.ribbon-track .seg{display:inline-flex;align-items:center;gap:40px;padding-right:40px}
+.ribbon-track b{color:#fff;font-weight:800;font-size:16px;letter-spacing:.03em;text-transform:uppercase;white-space:nowrap}
+.ribbon-track i{width:7px;height:7px;border-radius:50%;background:var(--accent-soft);flex:none}
+/* gallery */
+.gal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.gal{position:relative;border-radius:var(--radius);overflow:hidden;height:310px;box-shadow:var(--shadow-sm)}
+.gal img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease}
+.gal:hover img{transform:scale(1.08)}
+.gal .cap{position:absolute;left:0;right:0;bottom:0;padding:22px;background:linear-gradient(transparent,rgba(15,29,56,.85));color:#fff}
+.gal .cap b{font-size:18px;font-weight:800;display:block}
+.gal .cap span{font-size:13px;color:#C3CDE3}
+/* back to top */
+.totop{position:fixed;right:24px;bottom:24px;width:48px;height:48px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow);opacity:0;transform:translateY(18px);pointer-events:none;transition:.3s;z-index:60;border:0;cursor:pointer}
+.totop.show{opacity:1;transform:none;pointer-events:auto}
+.totop:hover{background:#1f57c8}
+.totop svg{width:20px;height:20px}
+@media(max-width:640px){.gal-grid{grid-template-columns:1fr}.hero-photo{display:none}}
 @media(prefers-reduced-motion:reduce){
   .reveal,.hero-copy>*,.hero-visual{opacity:1!important;transform:none!important;animation:none!important}
   .reveal .mark::after{transform:scaleX(1)!important}
-  .marquee-track,.hero-badge,.blob,.sunburst{animation:none!important}
+  .marquee-track,.ribbon-track,.hero-badge,.blob,.sunburst,.glow,.aurora{animation:none!important}
 }
 </style>
 </head>
 <body>
+<div class="progress" id="progress"></div>
+<button class="totop" id="totop" aria-label="Terug naar boven"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
 
 <!-- NAVBAR -->
 <header class="nav">
