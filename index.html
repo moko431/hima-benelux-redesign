@@ -714,6 +714,9 @@ h1,h2,h3,h4{color:var(--ink);line-height:1.08;letter-spacing:-.025em;font-weight
       hv.addEventListener('mousemove',function(e){var r=hv.getBoundingClientRect();var px=(e.clientX-r.left)/r.width-0.5,py=(e.clientY-r.top)/r.height-0.5;layers.forEach(function(l){var d=parseFloat(l.getAttribute('data-depth'))||12;l.style.transform=baseT(l)+' translate('+(px*d)+'px,'+(py*d)+'px)';});});
       hv.addEventListener('mouseleave',function(){layers.forEach(function(l){l.style.transform=baseT(l);});});
     }
+    [].slice.call(document.querySelectorAll('.dark')).forEach(function(s){
+      s.addEventListener('pointermove',function(e){var r=s.getBoundingClientRect();s.style.setProperty('--mx',((e.clientX-r.left)/r.width*100)+'%');s.style.setProperty('--my',((e.clientY-r.top)/r.height*100)+'%');});
+    });
   }
 })();
 </script>
